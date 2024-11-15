@@ -13,9 +13,11 @@
 
 pub use self::html_handlebars::HtmlHandlebars;
 pub use self::markdown_renderer::MarkdownRenderer;
+pub use self::single_file::SingleFileRenderer;
 
 mod html_handlebars;
 mod markdown_renderer;
+mod single_file;
 
 use shlex::Shlex;
 use std::collections::HashMap;

@@ -27,7 +27,9 @@ use crate::errors::*;
 use crate::preprocess::{
     CmdPreprocessor, IndexPreprocessor, LinkPreprocessor, Preprocessor, PreprocessorContext,
 };
-use crate::renderer::{CmdRenderer, HtmlHandlebars, MarkdownRenderer, RenderContext, Renderer};
+use crate::renderer::{
+    CmdRenderer, HtmlHandlebars, MarkdownRenderer, RenderContext, Renderer, SingleFileRenderer,
+};
 use crate::utils;
 
 use crate::config::{Config, RustEdition};
@@ -438,6 +440,8 @@ fn determine_renderers(config: &Config) -> Vec<Box<dyn Renderer>> {
                 Box::new(HtmlHandlebars::new()) as Box<dyn Renderer>
             } else if key == "markdown" {
                 Box::new(MarkdownRenderer::new()) as Box<dyn Renderer>
+            } else if key == "single_file" {
+                Box::new(SingleFileRenderer::new()) as Box<dyn Renderer>
             } else {
                 interpret_custom_renderer(key, table)
             }
